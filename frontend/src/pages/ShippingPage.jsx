@@ -9,8 +9,6 @@ import { saveShippingAddress } from "../slices/cartSlice";
 const ShippingPage = () => {
   const cart = useSelector((state) => state.cart);
 
-  console.log("tessst", cart);
-
   const { shippingAddress } = cart;
 
   const [address, setAddress] = useState(shippingAddress.address || "");
