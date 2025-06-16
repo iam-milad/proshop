@@ -6,7 +6,7 @@ import Loader from '../../components/Loader';
 // import Paginate from '../../components/Paginate';
 import {
   useGetProductsQuery,
-//   useDeleteProductMutation,
+   useDeleteProductMutation,
   useCreateProductMutation,
 } from '../../slices/productsApiSlice';
 import { toast } from 'react-toastify';
@@ -18,17 +18,17 @@ const ProductListPage = () => {
     pageNumber,
   });
 
-//   const [deleteProduct, { isLoading: loadingDelete }] =
-//     useDeleteProductMutation();
+  const [deleteProduct, { isLoading: loadingDelete }] =
+    useDeleteProductMutation();
 
   const deleteHandler = async (id) => {
     if (window.confirm('Are you sure')) {
-    //   try {
-    //     await deleteProduct(id);
-    //     refetch();
-    //   } catch (err) {
-    //     toast.error(err?.data?.message || err.error);
-    //   }
+      try {
+        await deleteProduct(id);
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
     }
   };
 
@@ -60,7 +60,7 @@ const ProductListPage = () => {
       </Row>
 
       {loadingCreate && <Loader />}
-      {/* {loadingDelete && <Loader />} */}
+      {loadingDelete && <Loader />}
       {isLoading ? (
         <Loader />
       ) : error ? (
